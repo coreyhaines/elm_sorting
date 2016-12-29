@@ -27,7 +27,8 @@ sortTests =
         , testSorted "Four Element Sorted List" [ 1, 2, 3, 4 ] [ 1, 2, 3, 4 ]
         , testSorted "Four Element Unsorted List not needing merge" [ 1, 2, 3, 4 ] [ 2, 1, 4, 3 ]
         , testSorted "Three Element Unsorted not needing merge" [ 1, 2, 3 ] [ 1, 3, 2 ]
-          -- , testSorted "Four Element Unsorted List needing merge" [ 1, 2, 3, 4 ] [ 4, 3, 1, 2 ]
+        , testSorted "Four Element Unsorted List needing merge" [ 1, 2, 3, 4 ] [ 4, 3, 1, 2 ]
+        , testSorted "Big list" [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] [ 2, 5, 3, 7, 8, 1, 6, 4, 9 ]
         ]
 
 
