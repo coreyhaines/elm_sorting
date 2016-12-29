@@ -1,6 +1,26 @@
 module MergeSort exposing (..)
 
 
+merge : List Int -> List Int -> List Int
+merge xs ys =
+    case xs of
+        [] ->
+            ys
+
+        x :: xs_ ->
+            case ys of
+                [] ->
+                    xs
+
+                y :: ys_ ->
+                    case x < y of
+                        True ->
+                            x :: (merge xs_ ys)
+
+                        False ->
+                            y :: (merge ys_ xs)
+
+
 sort : List Int -> List Int
 sort input =
     case input of
@@ -28,10 +48,8 @@ sort input =
 
                 first =
                     List.take half input
-                        |> Debug.log "first"
 
                 last =
                     List.drop half input
-                        |> Debug.log "last"
             in
-                (sort first) ++ (sort last)
+                merge (sort first) (sort last)
