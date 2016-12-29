@@ -26,14 +26,6 @@ sort input =
         [ _ ] ->
             input
 
-        [ x, y ] ->
-            case x > y of
-                True ->
-                    [ y, x ]
-
-                False ->
-                    [ x, y ]
-
         _ ->
             let
                 length =
