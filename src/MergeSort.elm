@@ -3,22 +3,18 @@ module MergeSort exposing (..)
 
 merge : List Int -> List Int -> List Int
 merge xs ys =
-    case xs of
-        [] ->
+    case ( xs, ys ) of
+        ( [], _ ) ->
             ys
 
-        x :: xs_ ->
-            case ys of
-                [] ->
-                    xs
+        ( _, [] ) ->
+            xs
 
-                y :: ys_ ->
-                    case x < y of
-                        True ->
-                            x :: (merge xs_ ys)
-
-                        False ->
-                            y :: (merge ys_ xs)
+        ( x :: xs_, y :: ys_ ) ->
+            if x < y then
+                x :: (merge xs_ ys)
+            else
+                y :: (merge ys_ xs)
 
 
 sort : List Int -> List Int
