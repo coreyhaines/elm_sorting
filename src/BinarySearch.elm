@@ -2,5 +2,5 @@ module BinarySearch exposing (search)
 
 
 search : List a -> a -> Int
-search array key =
+search items item =
     -1

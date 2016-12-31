@@ -12,13 +12,13 @@ all =
 
 
 testNotFound : String -> List Int -> Int -> Test
-testNotFound name array key =
-    test name <| \() -> Expect.equal -1 <| BinarySearch.search array key
+testNotFound name items item =
+    test name <| \() -> Expect.equal -1 <| BinarySearch.search items item
 
 
 searchTests : Test
 searchTests =
     describe "Searching Tests"
-        [ testNotFound "Searching an empty array" [] 1
-        , testNotFound "Searching a one-element array, not found" [ 0 ] 1
+        [ testNotFound "Searching an empty items" [] 1
+        , testNotFound "Searching a one-element items, not found" [ 0 ] 1
         ]
