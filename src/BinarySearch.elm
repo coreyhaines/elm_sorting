@@ -34,14 +34,17 @@ search_ item items midIndex value =
 
         Right ->
             let
-                foundInRight =
-                    (List.drop (midIndex + 1) items)
+                indexOffset =
+                    midIndex + 1
+
+                indexInRight =
+                    (List.drop indexOffset items)
                         |> search item
             in
-                if foundInRight == -1 then
+                if indexInRight == -1 then
                     -1
                 else
-                    foundInRight + midIndex + 1
+                    indexOffset + indexInRight
 
 
 whereMightItemBe : Int -> Int -> WhereIsItem
