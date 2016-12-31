@@ -3,6 +3,12 @@ module BinarySearch exposing (search)
 import List.Extra as List
 
 
+type WhereIsItem
+    = Value
+    | Left
+    | Right
+
+
 search : List Int -> Int -> Int
 search items item =
     let
@@ -11,28 +17,38 @@ search items item =
 
         midValue =
             List.getAt midIndex items
-
-        search_ value =
-            if value == item then
-                midIndex
-            else if value > item then
-                let
-                    left =
-                        List.take midIndex items
-                in
-                    search left item
-            else
-                let
-                    right =
-                        (List.drop (midIndex + 1) items)
-
-                    foundInRight =
-                        search right item
-                in
-                    if foundInRight == -1 then
-                        -1
-                    else
-                        foundInRight + midIndex + 1
     in
-        Maybe.map search_ midValue
+        Maybe.map (search_ midIndex items item) midValue
             |> Maybe.withDefault -1
+
+
+search_ : Int -> List Int -> Int -> Int -> Int
+search_ midIndex items item value =
+    case whereMightItemBe value item of
+        Value ->
+            midIndex
+
+        Left ->
+            List.take midIndex items
+                |> flip search item
+
+        Right ->
+            let
+                foundInRight =
+                    (List.drop (midIndex + 1) items)
+                        |> flip search item
+            in
+                if foundInRight == -1 then
+                    -1
+                else
+                    foundInRight + midIndex + 1
+
+
+whereMightItemBe : Int -> Int -> WhereIsItem
+whereMightItemBe value item =
+    if value == item then
+        Value
+    else if item < value then
+        Left
+    else
+        Right
