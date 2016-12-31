@@ -1,6 +1,7 @@
 module BinarySearch exposing (search)
 
 import List.Extra as List
+import Maybe.Extra as Maybe
 
 
 type WhereIsItem
@@ -18,8 +19,7 @@ search item items =
         midValue =
             List.getAt midIndex items
     in
-        Maybe.map (search_ item items midIndex) midValue
-            |> Maybe.withDefault -1
+        Maybe.unwrap -1 (search_ item items midIndex) midValue
 
 
 search_ : Int -> List Int -> Int -> Int -> Int
