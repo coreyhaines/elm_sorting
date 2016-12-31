@@ -1,6 +1,6 @@
 module BinarySearch exposing (search)
 
 
-search : List a -> a -> Int
+search : List Int -> Int -> Int
 search items item =
     -1
