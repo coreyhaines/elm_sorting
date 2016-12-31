@@ -13,12 +13,12 @@ all =
 
 testNotFound : String -> List Int -> Int -> Test
 testNotFound name items item =
-    test name <| \() -> Expect.equal -1 <| BinarySearch.search items item
+    test name <| \() -> Expect.equal -1 <| BinarySearch.search item items
 
 
 testFound : String -> List Int -> Int -> Int -> Test
 testFound name items item index =
-    test name <| \() -> Expect.equal index <| BinarySearch.search items item
+    test name <| \() -> Expect.equal index <| BinarySearch.search item items
 
 
 notFoundTests : Test
